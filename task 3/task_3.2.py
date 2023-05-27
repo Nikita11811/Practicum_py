@@ -14,11 +14,6 @@ for act in data["acts"]:
         data2.append(characters)
 
 with open("data2.json", 'w') as f:
-    f.write(json.dumps(data2, ensure_ascii=False, indent=4))
-
-
-
-
-
-
-
+    for line in data2:
+        f.write(json.dumps(line, ensure_ascii=False))
+        f.write('\n')
