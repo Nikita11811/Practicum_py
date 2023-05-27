@@ -1,11 +1,14 @@
 import json
 
-with open("data1.json", "a+", encoding="utf-8") as f:
-    for line in open("wikidata_1000.json", 'r', encoding="utf-8"):
-        data = json.loads(line)
+with open('wikidata_1000.json', 'r', encoding='utf-8') as f:
+    dic = {}
+    for row in f:
+        line = json.loads(row)
+        word = line["label"]["value"]
         try:
-            json.dump({data["label"]["value"]: data["description"]["value"]}, f, sort_keys=True, indent=4)
+            dic[word] = line["description"]["value"]
         except KeyError:
-            json.dump({data["label"]["value"]: None}, f, sort_keys=True, indent=4)
+            dic[word] = 'None'
 
-
+with open("data1.json", "w", encoding='utf-8') as g:
+    json.dump(dic, g, sort_keys=False, indent=4, ensure_ascii=False)
