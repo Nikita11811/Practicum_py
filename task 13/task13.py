@@ -52,8 +52,3 @@ class Wordform:
 
     def get_wordform(self):
         return self._wordform
-
-
-c1 = Corpus()
-c1.load('annot.opcorpora.no_ambig.xml')
-print(c1.get_sentence(4))
